@@ -19,16 +19,20 @@ mongoose
   .then(() => {
     console.log("connected to MongoDB");
   })
-  .catch((error) => {
+  .catch((error) => {ñ
     console.error("Error connecting to MongoDB", error.message);
   });
+
+  const baseUrl = process.env.NODE_ENV === 'development'
+  ? `http://localhost:3003`
+  : "https://cuffy-backend.vercel.app";
 
 
 const config = {
   authRequired: false,
   auth0Logout: true,
   secret: SECRET,
-  baseURL: `http://localhost:${PORT}`,
+  baseURL: baseUrl,
   clientID: "DhP0NihlK7e1JRZcFPUyF0nb4EaqDWEo",
   issuerBaseURL: 'https://dev-vf1leamsnvsgn37c.us.auth0.com'
 };
