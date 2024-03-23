@@ -1,9 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-import { MONGODB_URI, PORT } from "./utils/config.js";
-import { tokenExtractor } from "./utils/tokenExtractor.js";
-import { SECRET } from "./utils/config.js";
+import { MONGODB_URI, PORT, SECRET } from "./utils/config.js";
 import { auth } from "express-openid-connect";
 import pkg from 'express-openid-connect';
 // import loginRouter from "./controllers/login.js";
@@ -45,7 +43,7 @@ app.use(express.static("./.next"));
 
 app.use(express.json());
 
-app.use(tokenExtractor);
+// app.use(tokenExtractor);
 
 app.get('/', (req, res) => {
   // res.json(req.oidc.idToken).
