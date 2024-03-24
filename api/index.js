@@ -9,7 +9,7 @@ import productsRouter from "./controllers/products.js";
 
 const app = express();
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT;
 
 console.log("connecting to", MONGODB_URI);
 
@@ -60,6 +60,6 @@ app.get('/', (req, res) => {
 
 app.use("/api/products", productsRouter);
 
-app.listen(PORT, ()=> console.log("Server ready at port 3003"));
+app.listen(PORT, ()=> console.log("Server ready at port 3000"));
 
 export default app;
