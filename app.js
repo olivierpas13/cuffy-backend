@@ -49,11 +49,7 @@ app.use(express.json());
 // app.use(tokenExtractor);
 
 app.get('/', (req, res) => {
-  // res.json(req.oidc.idToken).
-  req.body = {
-    token: req.oidc.idToken,
-  }
-  res.redirect('http://localhost:3000/admin/dashboard');
+    res.json("Cuffy Backend")
 });
 
 
@@ -61,7 +57,6 @@ app.get('/profile', pkg.requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-// app.use(pkg.requiresAuth());
 
 app.use("/api/products", productsRouter);
 
