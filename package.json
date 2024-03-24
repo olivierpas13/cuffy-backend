@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node api/index.js",
-    "dev": "NODE_ENV=development nodemon api/index.js",
+    "dev": "NODE_ENV=development nodemon api/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
