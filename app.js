@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { MONGODB_URI, PORT, SECRET } from "./utils/config.js";
 import { auth } from "express-openid-connect";
+import morgan from "morgan";
 import pkg from 'express-openid-connect';
 // import loginRouter from "./controllers/login.js";
 // import userRouter from "./controllers/user.js";
@@ -38,6 +39,8 @@ const config = {
 app.use(auth(config));
 
 app.use(cors());
+
+app.use(morgan('dev'))
 
 app.use(express.static("./.next"));
 
