@@ -1,8 +1,9 @@
+import { PAGE_SIZE } from "../../utils/productUtils.js";
 import Product from "../models/product.js";
 
 class productRepository {
 
-  pageSize = 10;
+  pageSize = PAGE_SIZE;
 
   async fetchProductById(id) {
     try {
@@ -56,6 +57,15 @@ class productRepository {
     try {
       const product = await Product.find({properties: property});
       return product;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async countProducts(){
+    try {
+      const count = await Product.countDocuments();
+      return count;
     } catch (error) {
       throw error;
     }

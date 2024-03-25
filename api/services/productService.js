@@ -1,8 +1,13 @@
 import productRepository from "../database/repositories/productRepository.js";
+import { PAGE_SIZE } from "../utils/productUtils.js";
 
 class productService {
+  
+  limit = PAGE_SIZE;
+
   constructor() {
     this.repository = new productRepository();
+    this.totalProds = null;
   }
 
   async createProduct(data) {
@@ -27,7 +32,18 @@ class productService {
   async getProductsPage(index) {
     try {
       const page = await this.repository.fetchProductsByPage(index);
-      return page;
+      
+      if(!this.totalProds){
+        this.totalProds = await this.getProductsCount();
+      }
+
+      const res = {
+        page,
+        currentPage: index,
+        nextPage: index + PAGE_SIZE <  this.totalProds ? index + PAGE_SIZE : null,
+      }
+
+      return res;
     } catch (error) {
       throw error;
     }
@@ -46,6 +62,15 @@ class productService {
     try {
       const products = await this.repository.fetchProductsByProperty(property);
       return products;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getProductsCount(){
+    try {
+      const count = await this.repository.countProducts();
+      return count;
     } catch (error) {
       throw error;
     }
