@@ -15,16 +15,25 @@ class productService {
     }
   }
 
-  async getProducts(){
+  async getProducts() {
     try {
       const products = await this.repository.fetchProducts();
       return products;
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
-  async getProductById(id){
+  async getProductsPage(index) {
+    try {
+      const page = await this.repository.fetchProductsByPage(index);
+      return page;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getProductById(id) {
     try {
       const product = await this.repository.fetchProductById(id);
       return product;
@@ -33,7 +42,7 @@ class productService {
     }
   }
 
-  async getProductsByProperty(property){
+  async getProductsByProperty(property) {
     try {
       const products = await this.repository.fetchProductsByProperty(property);
       return products;

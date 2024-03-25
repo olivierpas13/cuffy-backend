@@ -1,6 +1,9 @@
 import Product from "../models/product.js";
 
 class productRepository {
+
+  pageSize = 10;
+
   async fetchProductById(id) {
     try {
       return await Product.findById(id);
@@ -26,6 +29,15 @@ class productRepository {
     try {
       const products = await Product.find();
       return products
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async fetchProductsByPage(index){
+    try {
+      const page = await Product.find().skip(this.pageSize * index).limit(this.pageSize);
+      return page;
     } catch (error) {
       throw error;
     }

@@ -27,6 +27,16 @@ productRouter.get("/", async (req, res, ) => {
   }
 });
 
+productRouter.get("/page/:index", async (req, res, ) => {
+  try {
+    const {index} = req.params
+    const products = await service.getProductsPage(index);
+    return res.json(products).status(200).end();
+  } catch (error) {
+    return (error);
+  }
+});
+
 productRouter.get("/:id", async (req, res, ) => {
   try {
     const { id } = req.params;
