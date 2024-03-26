@@ -37,7 +37,7 @@ class productRepository {
 
   async fetchProductsByPage(index){
     try {
-      const page = await Product.find().skip(this.pageSize * index).limit(this.pageSize);
+      const page = await Product.find().skip(index).limit(this.pageSize);
       return page;
     } catch (error) {
       throw error;

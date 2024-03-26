@@ -36,13 +36,11 @@ class productService {
       if(!this.totalProds){
         this.totalProds = await this.getProductsCount();
       }
-
       const res = {
         page,
-        currentPage: index,
-        nextPage: index + PAGE_SIZE <  this.totalProds ? index + PAGE_SIZE : null,
+        currentPage: Number(index),
+        nextPage: Number(index + PAGE_SIZE) <  this.totalProds ? Number(index + PAGE_SIZE) : null,
       }
-
       return res;
     } catch (error) {
       throw error;
