@@ -39,7 +39,7 @@ class productService {
       const res = {
         page,
         currentPage: Number(index),
-        nextPage: Number(index) <  this.totalProds ? Number(index + PAGE_SIZE) : null,
+        nextPage: Number(index) <  Number(this.totalProds) ? (Number(index) + Number(PAGE_SIZE)) : null,
       }
       return res;
     } catch (error) {
